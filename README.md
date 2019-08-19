@@ -36,7 +36,25 @@ public abstract class AnnotationVisitor {
     }
   }
   
-  public AnnotationVisitor visitAnnotation(String name, String desc)
+  public AnnotationVisitor visitAnnotation(String name, String desc) {
+    if (av != null) {
+      return av.visitAnnotation(name, desc);
+    }
+    return null;
+  }
+  
+  public AnnotationVisitor visitArray(String name) {
+    if (av != null) {
+      return av.visitArray(name);
+    }
+    return null;
+  }
+  
+  public void visitEnd() {
+    if (av != null) {
+      av.visitEnd();
+    }
+  }
 }
 
 ```
